@@ -1,0 +1,10 @@
+requests
+beautifulsoup4
+fastapi
+uvicorn
+google-api-python-client 
+google-auth-httplib2 
+google-auth-oauthlib 
+python-dotenv 
+
+
