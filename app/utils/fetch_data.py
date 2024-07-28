@@ -31,8 +31,6 @@ HEADERS = {
 }
 session = requests.Session()
 
-session = requests.Session()
-
 def authenticate():
     login_data = {"username": USERNAME, "password": PASSWORD}
     response = session.post(LOGIN_URL, json=login_data, headers=HEADERS)
@@ -51,7 +49,11 @@ def fetch_day_order():
     response.raise_for_status()
     day_order = response.json().get('day_order')
     if day_order:
-        day_order = int(day_order)  # Ensure day_order is an integer
+        day_order = ''.join(filter(str.isdigit, day_order))
+        if day_order:
+            day_order = int(day_order)
+        else:
+            day_order = None
     print(f"Fetched day order: {day_order}")
     return day_order
 
@@ -63,6 +65,7 @@ def fetch_timetable():
     timetable = data.get("time-table", []) 
     print(f"Fetched timetable: {timetable}")
     return timetable
+
 
 def fetch_and_schedule_classes():
     try:
