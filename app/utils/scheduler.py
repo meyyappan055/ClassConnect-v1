@@ -1,8 +1,10 @@
 import datetime
-from pytz import timezone, utc
+from pytz import timezone
 from calendar_service.event_service import create_event
 from models.event_schema import Event
 from auth.google_auth import service
+
+local_tz = timezone('Asia/Kolkata')
 
 def schedule_day_order_classes(day_order, timetable_data):
     print(f"Scheduling classes for day order: {day_order}")
@@ -17,18 +19,18 @@ def schedule_day_order_classes(day_order, timetable_data):
                     try:
                         start_time, end_time = time_slot.split(" - ")
 
-                        # Use UTC timezone
-                        start_datetime = utc.localize(datetime.datetime.combine(
+                        # Combine date and time and localize to local timezone
+                        start_datetime = local_tz.localize(datetime.datetime.combine(
                             datetime.date.today(),
                             datetime.datetime.strptime(start_time, "%H:%M").time()
                         ))
-                        end_datetime = utc.localize(datetime.datetime.combine(
+                        end_datetime = local_tz.localize(datetime.datetime.combine(
                             datetime.date.today(),
                             datetime.datetime.strptime(end_time, "%H:%M").time()
                         ))
 
-                        print(f"Start datetime (UTC): {start_datetime}")
-                        print(f"End datetime (UTC): {end_datetime}")
+                        print(f"Start datetime (Local): {start_datetime}")
+                        print(f"End datetime (Local): {end_datetime}")
 
                         event = Event(
                             summary=class_info[0],
