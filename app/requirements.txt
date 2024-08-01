@@ -7,3 +7,4 @@ requests
 schedule
 fastapi
 uvicorn
+streamlit
