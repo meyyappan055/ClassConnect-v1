@@ -5,3 +5,5 @@ google-api-python-client
 python-dotenv
 requests
 schedule
+fastapi
+uvicorn

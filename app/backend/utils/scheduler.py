@@ -1,14 +1,16 @@
 import datetime
 from pytz import timezone
-from calendar_service.event_service import create_event
-from models.event_schema import Event
-from auth.google_auth import service
+from backend.calendar_service.event_service import create_event
+from backend.models.event_schema import Event
+from backend.auth.google_auth import initialize_google_service
 
 local_tz = timezone('Asia/Kolkata')
 
 def schedule_day_order_classes(day_order, timetable_data):
     print(f"Scheduling classes for day order: {day_order}")
     try:
+        service = initialize_google_service()  # Initialize service here
+
         for entry in timetable_data:
             if entry['day_order'] == day_order:
                 print(f"Matched day order: {day_order} in entry: {entry}")

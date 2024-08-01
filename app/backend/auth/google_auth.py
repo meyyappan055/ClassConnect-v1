@@ -28,16 +28,12 @@ def auth_token_handling():
                 token_file.write(creds.to_json())
     
     return creds
-
-creds = auth_token_handling()
-print("Saving new credentials to token.json...")
-
-with open(TOKEN_PATH, 'w') as token_file:
-    token_file.write(creds.to_json())
     
-print("Authentication completed successfully.")
-print("Building Google Calendar service...")
 
-service = build('calendar', 'v3', credentials=creds)
-
-print("Google Calendar service built successfully.")
+def initialize_google_service():
+    creds = auth_token_handling()
+    print("Authentication completed successfully.")
+    print("Building Google Calendar service...")
+    service = build('calendar', 'v3', credentials=creds)
+    print("Google Calendar service built successfully.")
+    return service
