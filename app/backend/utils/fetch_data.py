@@ -3,7 +3,8 @@ import requests
 from dotenv import load_dotenv
 from utils.scheduler import schedule_day_order_classes
 
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+load_dotenv(dotenv_path)
 
 USERNAME = os.getenv("COLLEGE_USERNAME")
 PASSWORD = os.getenv("COLLEGE_PASSWORD")
