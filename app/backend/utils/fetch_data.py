@@ -83,3 +83,4 @@ def fetch_and_schedule_classes():
             print("Authentication failed")
     except Exception as e:
         print(f"Error in fetch_and_schedule_classes: {e}")
+
