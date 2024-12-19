@@ -30,12 +30,14 @@
 4. **Run the Backend Server**  
    Start the FastAPI backend server:  
    ```bash
+   cd backend
    uvicorn main:app --reload
    
 5. **Run the Streamlit Frontend**  
    Launch the Streamlit app:  
    ```bash
-   streamlit run frontend.py
+   cd frontend
+   streamlit run streamlit.py
 
 6. **Start the Scheduler**  
    - Open the Streamlit app in your browser (`http://localhost:8501`).
